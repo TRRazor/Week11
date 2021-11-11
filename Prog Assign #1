@@ -1,0 +1,119 @@
+//Imports the required methods
+import javafx.application.Application;
+import javafx.stage.Stage;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.control.Button;
+import javafx.scene.layout.VBox;
+import javafx.geometry.Pos;
+import javafx.geometry.Insets;
+
+public class NameFormatter extends Application
+{
+   
+   //Calls the launch method inherited from the Application class
+   public static void main(String[] args)
+   {
+      launch(args);
+   }
+   
+   @Override
+   public void start (Stage primaryStage)
+   {
+      primaryStage.setTitle("Name Formatter");
+      
+      //Setting up the textFields for input
+      TextField firstNameField = new TextField();
+      TextField middleNameField = new TextField();
+      TextField lastNameField = new TextField();
+      TextField preferredTitleField = new TextField();
+      Label formattedName = new Label("");
+      
+      //Setting up the placeholder text within each textfield, telling the user what they need to implement
+      firstNameField.setPromptText("The user's first name");
+      firstNameField.setFocusTraversable(false);
+      middleNameField.setPromptText("The user's middle name");
+      middleNameField.setFocusTraversable(false);
+      lastNameField.setPromptText("The user's last name");
+      lastNameField.setFocusTraversable(false);
+      preferredTitleField.setPromptText("The user's preferred title (Mr., Mrs., Dr., etc.)");
+      preferredTitleField.setFocusTraversable(false);
+      
+      //Setting up 6 buttons that provide for 6 different formats
+      Button titleFirstMiddeLast = new Button("[Format Option 1] -> title + first + middle + last name (Ex: Ms. Kelly Jane Smith)");
+      titleFirstMiddeLast.setFocusTraversable(false);
+      
+      Button firstMiddeLast = new Button("[Format Option 2] -> first + middle + last name (Ex: Kelly Jane Smith)");
+      firstMiddeLast.setFocusTraversable(false);
+      
+      Button firstLast = new Button("[Format Option 3] -> first + last name (Ex: Kelly Smith)");
+      firstLast.setFocusTraversable(false);
+      
+      Button lastFirstMiddleTitle = new Button("[Format Option 4] -> last, first + middle, title (Ex: Smith, Kelly Jane, Ms.)");
+      lastFirstMiddleTitle.setFocusTraversable(false);
+      
+      Button lastFirstMiddle = new Button("[Format Option 5] -> last, first + middle (Ex: Smith, Kelly Jane)");
+      lastFirstMiddle.setFocusTraversable(false);
+      
+      Button lastFirst = new Button("[Format Option 6] -> last + first (Ex: Smith, Kelly)");
+      lastFirst.setFocusTraversable(false);
+      
+      
+      //Option Format 1 button
+      titleFirstMiddeLast.setOnAction(event ->
+      {
+         String format = preferredTitleField.getText() + " " + firstNameField.getText() + " " + middleNameField.getText() + " " + lastNameField.getText();
+         formattedName.setText("Formatted text: " + format);                  
+      });
+      
+      //Option Format 2 button
+      firstMiddeLast.setOnAction(event ->
+      {
+         String format = firstNameField.getText() + " " + middleNameField.getText() + " " + lastNameField.getText();
+         formattedName.setText("Formatted text: " + format);                  
+      });
+      
+      //Option Format 3 button
+      firstLast.setOnAction(event ->
+      {
+         String format = firstNameField.getText() + " " + lastNameField.getText();
+         formattedName.setText("Formatted text: " + format);                  
+      });
+      
+      //Option Format 4 button
+      lastFirstMiddleTitle.setOnAction(event ->
+      {
+         String format = lastNameField.getText() + ", " + firstNameField.getText() + " " + middleNameField.getText() + ", " + preferredTitleField.getText();
+         formattedName.setText("Formatted text: " + format);                  
+      });
+      
+      //Option Format 5 button
+      lastFirstMiddle.setOnAction(event ->
+      {
+         String format = lastNameField.getText() + ", " + firstNameField.getText() + " " + middleNameField.getText();
+
+         formattedName.setText("Formatted text: " + format);                  
+      });
+      
+      //Option Format 6 button
+      lastFirst.setOnAction(event ->
+      {
+         String format = lastNameField.getText() + ", " + firstNameField.getText();
+         formattedName.setText("Formatted text: " + format);                  
+      });
+      
+      //General attributes to the vbox layout
+      VBox vbox = new VBox(firstNameField, middleNameField, lastNameField, 
+                           preferredTitleField, titleFirstMiddeLast, firstMiddeLast,
+                           firstLast, lastFirstMiddleTitle, lastFirstMiddle, lastFirst, formattedName);
+      vbox.setPadding(new Insets(10));
+      vbox.setSpacing(10);
+
+      vbox.setAlignment(Pos.CENTER);
+      
+      Scene scene = new Scene(vbox);
+      primaryStage.setScene(scene);
+      primaryStage.show();
+   }
+}
