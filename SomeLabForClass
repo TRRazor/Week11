@@ -26,7 +26,7 @@ public class TipCalculator extends Application
       Label rCharge = new Label("Restaurant Charge");
       TextField textField = new TextField();
       Button calculateButton = new Button("Calculate tip");
-      Label amtLabel = new Label("Restaurant Charge");
+      Label amtLabel = new Label("Amount to Tip:");
       Label calculatedTip = new Label("");
       
       calculateButton.setOnAction(event ->
